@@ -1,7 +1,7 @@
 import sun.awt.image.ImageWatched;
 
 public class Main {
-    static LinkedList root, current, temp;
+    static LinkedList root, current, temp, prev;
 
     public static void addToLinkedList(String name) {
         if (root != null) {
@@ -16,25 +16,36 @@ public class Main {
     }
 
     public static void linkedSet(LinkedList link) {
-        current = temp = link;
-        do {
-            while (temp.next != null) {
-                System.out.println("C = " + current.name + " T = " + temp.name);
-                if (current.name == temp.name) {
-                    System.out.println("Yeah");
-                }
-                temp = temp.next;
-            }
-            current = current.next;
-        }
-        while (current != null);
+        current = root;
+        int copyCounter;
+       while (current != null){
+           temp = prev = root;
+           copyCounter = 0;
+           System.out.println("Name: " + current.name);
+           while (temp != null){
+               System.out.println("---Name: " + temp.name);
+               if(current.name == temp.name){
+                   if(copyCounter > 0){
+                       System.out.println("Вхождение:" + copyCounter + " раз");
+                       prev.next = temp.next;
+                   } else copyCounter++;
+
+               }
+               prev = temp;
+               temp = temp.next;
+
+           }
+           current = current.next;
+       }
     }
 
 
     public static void main(String[] args) {
         addToLinkedList("Игорь");
+        addToLinkedList("Игорь");
         addToLinkedList("Иван");
-        addToLinkedList("Андрейа");
+        addToLinkedList("Михаил");
+        addToLinkedList("Андрей");
         addToLinkedList("Андрей");
         linkedSet(root);
     }
