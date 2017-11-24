@@ -1,5 +1,3 @@
-import sun.awt.image.ImageWatched;
-
 public class Main {
     static LinkedList root, current, temp, prev;
 
@@ -18,25 +16,22 @@ public class Main {
     public static void linkedSet(LinkedList link) {
         current = root;
         int copyCounter;
-       while (current != null){
-           temp = prev = root;
-           copyCounter = 0;
-           System.out.println("Name: " + current.name);
-           while (temp != null){
-               System.out.println("---Name: " + temp.name);
-               if(current.name == temp.name){
-                   if(copyCounter > 0){
-                       System.out.println("Вхождение:" + copyCounter + " раз");
-                       prev.next = temp.next;
-                   } else copyCounter++;
+        while (current != null) {
+            temp = prev = root;
+            copyCounter = 0;
+            while (temp != null) {
+                if (current.name == temp.name) {
+                    if (copyCounter > 0) {
+                        prev.next = temp.next;
+                    } else copyCounter++;
 
-               }
-               prev = temp;
-               temp = temp.next;
+                }
+                prev = temp;
+                temp = temp.next;
 
-           }
-           current = current.next;
-       }
+            }
+            current = current.next;
+        }
     }
 
 
